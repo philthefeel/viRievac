@@ -1,4 +1,11 @@
 # viRievac
 R package specifically programmed for IrsiCaixa's VIRIEVAC group
 
-This line is from Rstudio.
+## How to install:
+To install the package you need **epitools** library. 
+
+Package can be installed using the following commands:
+```
+devtools::install_github('douve/viRievac')
+require(viRievac)
+```
