@@ -1,0 +1,11 @@
+Package: viRievac
+Type: Package
+Title: Main R functions (viRievac)
+Version: 0.1.0
+Author: Dan Ouchi
+Maintainer: Dan Ouchi <douchi@irsicaixa.es>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
