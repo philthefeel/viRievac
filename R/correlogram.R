@@ -5,7 +5,6 @@
 
 #' @data - dataset
 #' @method - 'spearman'
-#' @upper.col - color palette
 #' @lower.col - dotpplot color
 #' @signif.col - singificance stars color
 #' @sig.level - significance level. default:0.05
@@ -20,10 +19,11 @@
 correlogram = function(data,
                        method='spearman',
                        sig.level=0.05,
-                       signif.col = '#ffbb00',rr.col=grDevices::colorRamp(RColorBrewer::brewer.pal(11, "Spectral")),
-                       lower.col='black',
+                       signif.col = '#ffbb00',
+                       upper.col=grDevices::colorRamp(RColorBrewer::brewer.pal(11, "Spectral")),
+                       lower.col=adjustcolor(1,.4),
                        regression.line=TRUE,
-                       regression.line.col='#89da59',
+                       regression.line.col='#ba5536',
                        main='',
                        save = FALSE,
                        path.output='./',

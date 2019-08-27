@@ -3,7 +3,8 @@
 \title{Correlogram }
 \usage{
 correlogram(data,method,upper.col,lower.col,signif.col,sig.level,
-            main,save,height,width,path.output,filename,date,regression.table)
+            regression.line, regression.line.col,main,
+            save,height,width,path.output,filename,date,regression.table)
 }
 \arguments{
 
@@ -13,6 +14,8 @@ correlogram(data,method,upper.col,lower.col,signif.col,sig.level,
   \item{lower.col}{Lower dotplot color}
   \item{signif.col}{significance stars color}
   \item{sig.level}{significance level. default:0.05}
+  \item{regression.line}{logical. Dot plot with linear regression}
+  \item{regression.line.col}{regression line color}
   \item{main}{Chart title}
   \item{save}{logical. Save the correlogram in pdf}
   \item{height}{pdf parameter}
