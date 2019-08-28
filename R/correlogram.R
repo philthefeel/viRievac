@@ -150,7 +150,7 @@ correlogram = function(data,
     dev.off()
 
     if(regression.table){
-      pw = pairwise_simpleLM(aux %>% select(-ID,-Group,-Cond) %>% na.omit)
+      pw = pairwise_simpleLM(data)
       pw = pw[!duplicated(pw$F.pv),] %>% filter(LHS!=RHS) %>%
         select(yvar=LHS,xvar=RHS,alpha,beta,R2,Pval=F.pv) %>%
         mutate(Pval.sign = pToSign(Pval))
