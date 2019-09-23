@@ -73,6 +73,7 @@ correlogram = function(data,
     polygon(x, y, border=col, col=col)
     text(0, 0, txt, cex = cx * abs(correlation),family='sans')
     text(-.65, -.9, Signif, cex=cx, col=signif.col)
+    text(.65, -.9, round(test$p.value,4), cex=1, col=signif.col)
 
   }
 
@@ -152,8 +153,9 @@ correlogram = function(data,
     if(regression.table){
       pw = pairwise_simpleLM(data)
       pw = pw[!duplicated(pw$F.pv),] %>% filter(LHS!=RHS) %>%
-        select(yvar=LHS,xvar=RHS,alpha,beta,R2,Pval=F.pv) %>%
-        mutate(Pval.sign = pToSign(Pval))
+        mutate(Pval.sign = pToSign(F.pv),
+               rho = sqrt(R2)) %>%
+        select(yvar=LHS,xvar=RHS,alpha,beta,rho,R2,Pval=F.pv,Pval.sign)
 
       uniexport(pw,'excel',path.output,filename,row.names=F)
     }
