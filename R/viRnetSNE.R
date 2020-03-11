@@ -5,10 +5,10 @@
 viRnetSNE = function(data,params,path.netSNE.dir = "~/Documents/netsne-master/bin/",
                      path.output.dir = 'netSNE_outputs',
                      toRun = c("Compute.sim", "BhtSNE","NetSNE.train","NetSNE.project"),
-                     max.iter = 1000, learn.rate=nrow(data)/12,NN.layers= 2,
+                     max.iter = 1000, learn.rate=200,NN.layers= 2,
                      trainOutput=T,trainSize=1000,seed=1985,normalize=TRUE,
                      minimize=FALSE,plot=F,filename='netSNE',
-                     size=0.05,alpha=1,ylim=c(-100,100),xlim=c(-100,100),
+                     size=0.05,alpha=1,ylim=c(-50,50),xlim=c(-50,50),
                      clustering=TRUE,cluster.method='Phenograph',k=30,palette=NULL,path.save = './'){
 
 
