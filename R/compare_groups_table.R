@@ -186,8 +186,7 @@ compare_groups_table = function(data,
       uniexport(tab,type = 'csv',
                 path = path.output,
                 filename = paste0(filename,'_',method,'_',p),
-                date=date,row.names=F,
-                sep=sep)
+                date=date,sep=sep)
     } else{
       return(tab)
     }
