@@ -109,11 +109,10 @@ compare_groups_table = function(data,
 
     if(save){
       p = 'Independent'
-      uniexport(tab,type = 'csv',
+      uniexport(tab,type = 'excel',
                 path = path.output,
                 filename = paste0(filename,'_',method,'_',p),
-                date=date,row.names=F,
-                sep=sep)
+                date=date)
     } else{
       return(tab)
     }
@@ -183,10 +182,10 @@ compare_groups_table = function(data,
 
     if(save){
       p = 'Paired'
-      uniexport(tab,type = 'csv',
+      uniexport(tab,type = 'excel',
                 path = path.output,
                 filename = paste0(filename,'_',method,'_',p),
-                date=date,sep=sep)
+                date=date)
     } else{
       return(tab)
     }
