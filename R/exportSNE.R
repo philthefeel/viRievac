@@ -6,7 +6,7 @@ exportSNE = function(data,sample.var='sampleID',
                      clusters.var='louvain',type='flowjo',
                      save.path='./',filename='',date=TRUE){
 
-  if(type=='flowjo') UEMR::uniexport(data,'csv',path = save.path,filename = paste0('toFlowJo_',n_distinct(data[,clusters.var]),'_clusters_',filename),date=date,sep=',',row.names=FALSE)
+  if(type=='flowjo') UEMR::uniexport(data,'csv',path = save.path,filename = paste0('toFlowJo_',n_distinct(data[,clusters.var]),'_clusters_',filename),date=date,sep=',')
 
   if(type=='freq'){
 
@@ -17,7 +17,7 @@ exportSNE = function(data,sample.var='sampleID',
     colnames(tab)[1] = sample.var
     UEMR::uniexport(tab,'excel',path = save.path,
               filename = paste0('Cell_freq_',n_distinct(data[,clusters.var]),'_clusters_',filename),
-              date=date,row.names=F)
+              date=date)
 
   }
 
