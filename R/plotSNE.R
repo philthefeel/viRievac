@@ -15,6 +15,8 @@ plotSNE = function(data,vars=c('tSNE_V1','tSNE_V2'), col.clusters =F,
     if(is.null(palette)){
       lev = n_distinct(data[,clusters.var])
       mycols <- viRievac::color_cluster(lev)
+    } else{
+      mycols <- palette
     }
 
     # cluster centroids for labels:
