@@ -12,8 +12,8 @@ plotSNE = function(data,vars=c('tSNE_V1','tSNE_V2'), col.clusters =F,
 
   if(col.clusters){
 
+    lev = n_distinct(data[,clusters.var])
     if(is.null(palette)){
-      lev = n_distinct(data[,clusters.var])
       mycols <- viRievac::color_cluster(lev)
     } else{
       mycols <- palette
