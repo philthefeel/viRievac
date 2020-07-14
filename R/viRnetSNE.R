@@ -2,7 +2,8 @@
 
 
 # netSNE model:
-viRnetSNE = function(data,params,path.netSNE.dir = "~/Documents/netsne-master/bin/",
+viRnetSNE = function(data,params,
+                     path.netSNE.dir = "~/Documents/netsne-master/bin/",
                      path.output.dir = 'netSNE_outputs',
                      toRun = c("Compute.sim", "BhtSNE","NetSNE.train","NetSNE.project"),
                      max.iter = 1000, learn.rate=200,NN.layers= 2,
