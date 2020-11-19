@@ -6,7 +6,7 @@
 # Function that creates boxplots with pairwise comparisons
 #' @param data - a data.frame
 #' @param vars - character. Selection of variables to analyze from the data.frame
-#' @param id.var - character. Identifier 
+#' @param id.var - character. Identifier
 #' @param group.var - character. Grouping variable
 #' @param paired - logical. Type of analysis paired or independent
 #' @param method - character. Method of analysis to select between 'wilcox.test' and 't.test'
@@ -44,27 +44,27 @@ compare_boxplots = function(data,vars,id.var,group.var,paired=F,
                             filename = 'compare_boxplot',
                             width=15,height=15,
                             date=F){
-  
+
   if(!add) add = NULL else add='jitter'
   # if(class(mydata[,group.var])!='factor') stop('group.var must be a factor variable')
-  
+
   if(is.null(my_comparisons)) my_comparisons = combn(1:n_distinct(data %>% select_(group.var)),2) %>% apply(2,list) %>% lapply(unlist)
-  
+
   if(paired){
-    
+
     # if(!exists(id.var)) stop('in a paired analysis id.var must be defined')
-    
+
     facet = c('variable',facet)
-    
+
     aux = data %>% select(id.var,group.var,vars) %>% melt %>% arrange_(group.var,id.var)
-    aux = aux %>% group_by_(id.var,facet) %>% 
-      mutate(n=n()) %>% filter(n==2) %>% 
-      select(-n) %>% data.frame
-    
+    # aux = aux %>% group_by_(id.var,facet,vars) %>%
+    #   mutate(n=n()) %>% filter(n==2) %>%
+    #   select(-n) %>% data.frame
+
     p = ggpaired(aux, x = group.var, y = "value",
                  col = group.var, palette = palette,
-                 line.color = "#acbebe", line.size = 0.4)+ 
-      theme_bw() + 
+                 line.color = "#acbebe", line.size = 0.4)+
+      theme_bw() +
       stat_compare_means(label=pval,
                          method = method,
                          paired=TRUE,
@@ -75,13 +75,13 @@ compare_boxplots = function(data,vars,id.var,group.var,paired=F,
               short.panel.labs = T,
               scales=scales,
               panel.labs.background = list(fill='#f4f4ef'))
-    
-    
+
+
   } else{
-    
+
     aux = data %>% select(group.var,vars,facet) %>% melt
     facet = c('variable',facet)
-    
+
     p = ggboxplot(aux, x = group.var, y = "value",
                   col = col, palette = palette,
                   add=add,shape=shape)+ theme_bw()+
@@ -95,18 +95,18 @@ compare_boxplots = function(data,vars,id.var,group.var,paired=F,
               short.panel.labs = T,
               scales=scales,
               panel.labs.background = list(fill='#f4f4ef'))
-    
+
   }
-  
+
   if(save){
     if(date) filename = paste(filename,Sys.Date(),sep = '_')
     fn = paste0(path.output,filename,'.pdf')
     pdf(fn,height=height,width = width)
     print(p)
     dev.off()
-    
+
   } else{
     return(p)
   }
-  
+
 }
