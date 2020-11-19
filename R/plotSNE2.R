@@ -1,12 +1,13 @@
 
 
 
-# tSNE plot
-plotSNE = function(data,vars=c('tSNE_V1','tSNE_V2'), col.clusters =F,
-                   clusters.var='louvain',palette=NULL,label=F,
-                   alpha=1,ylim=c(-100,100),xlim=c(-100,100),size=1,
-                   save=T,path.save='./',filename='tSNE_',date=T,
-                   height=9,width=9,res=150,units='in'){
+
+# tSNE plot v2:
+plotSNE2 = function(data,vars=c('tSNE_V1','tSNE_V2'), col.clusters =F,
+                    clusters.var='louvain',palette=NULL,label=F,
+                    alpha=1,ylim=c(-100,100),xlim=c(-100,100),size=1,
+                    save=T,path.save='./',filename='tSNE_',date=T,
+                    height=9,width=9,res=150,units='in'){
 
   require(ggplot2)
 
@@ -30,19 +31,22 @@ plotSNE = function(data,vars=c('tSNE_V1','tSNE_V2'), col.clusters =F,
       colnames(lc.cent) = c('louvain','tSNE_V1','tSNE_V2')
 
       # ggplot:
-      p <- ggplot(d, aes(x = tSNE_V1, y = tSNE_V2, colour = (louvain))) +
-        geom_point(alpha = alpha,size=size) + theme_bw() +
-        ylim(ylim) + xlim(xlim) +
-        scale_color_manual(values=mycols)+
-        ggrepel::geom_label_repel(aes(label = louvain),
-                                  data = lc.cent) + guides(colour = FALSE)
-    }else{
-      # ggplot:
-      p <- ggplot(d, aes(x = tSNE_V1, y = tSNE_V2, colour = (louvain))) +
+      p <- ggplot(d, aes(x = tSNE_V1, y = tSNE_V2, colour = louvain)) +
         geom_point(alpha = alpha,size=size) +
         blank_theme+
         ylim(ylim) + xlim(xlim) +
-        scale_color_manual(values=mycols)
+        scale_color_manual(values=mycols)+
+        ggrepel::geom_label_repel(aes(label = louvain),
+                                  data = lc.cent) + guides(colour = FALSE)+
+        theme(legend.position = 'none')
+    }else{
+      # ggplot:
+      p <- ggplot(d, aes(x = tSNE_V1, y = tSNE_V2, colour = louvain)) +
+        geom_point(alpha = alpha,size=size) +
+        blank_theme+
+        ylim(ylim) + xlim(xlim) +
+        scale_color_manual(values=mycols)+
+        guides(color = guide_legend(override.aes = list(size = 5,alpha=1)))
     }
 
   } else{
@@ -52,7 +56,9 @@ plotSNE = function(data,vars=c('tSNE_V1','tSNE_V2'), col.clusters =F,
 
     # ggplot:
     p <- ggplot(d, aes(x=tSNE_V1, y=tSNE_V2)) +
-      geom_point(alpha = alpha,size=size) + theme_bw() + ylim(ylim) + xlim(xlim)
+      geom_point(alpha = alpha,size=size) +
+      blank_theme + ylim(ylim) + xlim(xlim)+
+      theme(legend.position = 'none')
   }
 
   if(save){

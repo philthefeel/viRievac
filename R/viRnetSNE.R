@@ -2,11 +2,12 @@
 
 
 # netSNE model:
-viRnetSNE = function(data,params,path.netSNE.dir = "~/Documents/netsne-master/bin/",
+viRnetSNE = function(data,params,
+                     path.netSNE.dir = "~/Documents/netsne-master/bin/",
                      path.output.dir = 'netSNE_outputs',
                      toRun = c("Compute.sim", "BhtSNE","NetSNE.train","NetSNE.project"),
                      max.iter = 1000, learn.rate=200,NN.layers= 2,
-                     trainOutput=T,trainSize=1000,seed=1985,normalize=TRUE,
+                     dims = 2,trainOutput=T,trainSize=1000,seed=1985,normalize=TRUE,
                      minimize=FALSE,plot=F,filename='netSNE',
                      size=0.05,alpha=1,ylim=c(-50,50),xlim=c(-50,50),
                      clustering=TRUE,cluster.method='Phenograph',k=30,palette=NULL,path.save = './'){
@@ -30,7 +31,8 @@ viRnetSNE = function(data,params,path.netSNE.dir = "~/Documents/netsne-master/bi
   set.seed(seed)
   Result=rNetSNE::R_netSNE(to.run = toRun,
                            path.netSNE.dir = path.netSNE.dir,
-                           out.dims = 2, max.iter = max.iter, perp = 30L, theta.BhtSNE = 0.5, theta.NetSNE = 0.5,
+                           out.dims = dims, max.iter = max.iter, perp = 30L,
+                           theta.BhtSNE = 0.5, theta.NetSNE = 0.5,
                            mom.init = 0.5, mom.final = 0.8, mom.switch.iter = 250L,
                            early.exag.iter = 250, learn.rate.bhtSNE = learn.rate, learn.rate.netSNE = 0.02,
                            NN.layers = NN.layers, NN.units = 50, NN.function = "relu", sgd = TRUE,

@@ -152,7 +152,7 @@ correlogram = function(data,
 
     if(regression.table){
       pw = pairwise_simpleLM(data)
-      pw = pw[!duplicated(pw$F.pv),] %>% filter(LHS!=RHS) %>%
+      pw = pw[!duplicated(pw$F.pv),] %>% dplyr::filter(LHS!=RHS) %>%
         mutate(Pval.sign = pToSign(F.pv),
                rho = sqrt(R2)) %>%
         select(yvar=LHS,xvar=RHS,alpha,beta,rho,R2,Pval=F.pv,Pval.sign)
