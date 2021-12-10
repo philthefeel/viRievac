@@ -8,7 +8,7 @@ sampleCells = function(data,fcsName.var='fcs_file',params,mincells=1000,
 
   if(dplyr::n_distinct(data[,fcsName.var])==1){
 
-    data = data %>% dplyr::select(fcsName.var,params) %>% sample_n(mincells) %>% na.omit()
+    aux = data %>% dplyr::select(fcsName.var,params) %>% sample_n(mincells) %>% na.omit()
 
     cat('sampling',mincells,'cells\n')
 
